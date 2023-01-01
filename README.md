@@ -7,3 +7,4 @@
 <img src="https://user-images.githubusercontent.com/62281102/210170048-3650c6bd-1de3-4135-b2cd-6c9c3b1eb771.gif">
 
 ### Algorithm
+- DFS
