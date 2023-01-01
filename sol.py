@@ -8,15 +8,20 @@ def input_list(dtype=int, fast=False):
     if not fast:
         return [dtype(i) for i in input().split()]
     return [dtype(i) for i in sys.stdin.readline().strip().split()]
-monitor = False
 
 B = []
 for _ in range(9):
     B.append(input_list())
 
-def confidence_blank(board=B):
+def confident_blank(board=B):
+    '''
+    Repeatedly fill in the "confident" blanks, which means that has only one candidate.
+    When every blank are filled, or has two candidates at least, return the remaining candidates.
+    When there is a blank that has no candidate, return None.
+    '''
     candidates = {}
     conf = []
+    # Create candidate dictionary
     for i in range(9):
         for j in range(9):
             if board[i][j] == 0:
@@ -49,8 +54,11 @@ def confidence_blank(board=B):
     return conf, candidates
 
 def solution():
-
-    conf, candidates = confidence_blank()
+    '''
+    Conduct DFS algorithm to fill in the blanks with multiple candidates.
+    Starts with blank that has minimum candidates (at least two)
+    '''
+    conf, candidates = confident_blank()
     if candidates is None:
         for _i, _j in conf:
             B[_i][_j] = 0
